@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,7 +34,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingImage(greeting = "Happy Birthday, Android!", from = "From AchroDev!")
+                    GreetingImage( stringResource(R.string.happy_birthday_text), stringResource(
+                        R.string.from_text
+                    )
+                    )
                 }
             }
         }
@@ -41,10 +46,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingText(greeting: String, from: String, modifier: Modifier = Modifier) {
+    // Creates a column so that the text doesn't overlap, essentially giving them a grid.
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
     ) {
+        // Sets the greeting text styling
         Text(
             text = greeting,
             fontSize = 30.sp,
@@ -53,12 +60,13 @@ fun GreetingText(greeting: String, from: String, modifier: Modifier = Modifier) 
                 .padding(16.dp)
                 .align(alignment = Alignment.CenterHorizontally)
         )
+        // Sets the signature "from" text styling
         Text(
             text = from,
             fontSize = 25.sp,
             modifier = Modifier
                 .padding(16.dp)
-                .align(alignment = Alignment.End)
+                .align(alignment = Alignment.CenterHorizontally)
         )
     }
 }
@@ -88,6 +96,6 @@ fun GreetingImage(greeting: String, from: String, modifier: Modifier = Modifier)
 @Composable
 fun GreetingPreview() {
     BirthdayCardTheme {
-        GreetingImage(greeting = "Happy Birthday, Android!", from = "From AchroDev!")
+        GreetingImage( stringResource(R.string.happy_birthday_text), stringResource(R.string.from_text))
     }
 }
